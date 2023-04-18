@@ -1,24 +1,27 @@
 class ArticlesController < ApplicationController
 
-  http_basic_authenticate_with name: "clark", password: "clark", except: [:index, :show, :article]
+  http_basic_authenticate_with name: "clark", password: "clark", except: [:index, :show, :article_page]
 
   def index
     
   end
 
-  def article
+  def article_page
     @articles = Article.all
   end
 
   def show
     @article = Article.find(params[:id])
+    @comment = @article.comments.build
   end
 
   def new
     @article = Article.new
+    @comment = @article.comments.build
   end
 
   def create
+    @comment = @article.comments.build
     @article = Article.new(article_params)
 
     if @article.save
