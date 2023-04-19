@@ -1,11 +1,13 @@
-<% unless comment.archived? %>
+<% unless comment.archived? || comment.new_record?%>
 
- 
-  <p>
-    <strong>Commenter:</strong>
-    <%= comment.commenter %>
-    
-  </p>
+  <div>
+    <p>
+      <strong>Commenter:</strong>
+      <%= comment.commenter %>
+      
+    </p>
+  </div>
+  
 
   <p>
     <strong>Comment:</strong>

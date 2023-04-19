@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
 
-  http_basic_authenticate_with name: "clark", password: "clark", except: [:index, :show, :article_page]
+  before_action :authenticate_user!
 
   def index
     
@@ -17,11 +17,10 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
-    @comment = @article.comments.build
   end
 
   def create
-    @comment = @article.comments.build
+   
     @article = Article.new(article_params)
 
     if @article.save

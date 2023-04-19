@@ -1,8 +1,9 @@
-<%= form_with model: [ @article, @comment ] do |form| %>
+<%= form_with(model: [ @article, @article.comments.build ]) do |form| %>
   <div>
     <p>
       <%= form.label :commenter %><br>
       <%= form.text_field :commenter %>
+      
       <% @comment.errors.full_messages_for(:commenter).each do |message| %>
         <div><%= message %></div>
       <% end %>
@@ -14,7 +15,7 @@
       <%= form.label :body %><br>
       <%= form.text_area :body %>
       <% @comment.errors.full_messages_for(:body).each do |message| %>
-      <div><%= message %></div>
+        <div><%= message %></div>
       <% end %>
     </p>
   </div>
@@ -27,7 +28,7 @@
   </div>
   
 
-  <div>
+  <div class="actions">
     <%= form.submit %>
   <div>   
 
